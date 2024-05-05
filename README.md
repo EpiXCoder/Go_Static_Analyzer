@@ -13,17 +13,21 @@
 
 ## How to Use
 1. **Build the Analyzer:** Compile the project to produce the binary:
-```
-   go build -o static-analyzer
-```
-2. **Get a GitHub Token**: Create a personal access token from GitHub with the necessary permissions.
+    ```
+    go build -o static-analyzer
+    ```
+2. **Get a GitHub Token**: Create a personal access token from GitHub.
+    >Make sure it's valid and has the necessary permissions, like `repo` scope for private repositories.
+    > Create a new token following these steps:
+    > 1. Go to your GitHub account settings.
+    > 2. Navigate to "Developer Settings" → "Personal Access Tokens".
+    > 3. Generate a new token with the required scopes.
 
 3. **Run the Analyzer**: Execute the analyzer with the GitHub username and token:
-```
-./static-analyzer <github-username> <github-token>
-```
-Replace <github-username> with the GitHub username to analyze and <github-token> with your access token.
-You can clone this compromised repo to test the program: https://github.com/EpiXCoder/Compromised_Repo
+    ```
+    ./static-analyzer <github-username> <github-token>
+    ```
+    Replace <github-username> with the GitHub username to analyze and <github-token> with your access token.
 
 4. **View the Report**: The analyzer will output the findings to the console, listing insecure patterns found in the repositories.
 
@@ -34,10 +38,15 @@ Found issue in repo2/server.go at line 24: Insecure HTTP URL detected
 Found issue in repo3/utils.go at line 45: Potential command injection detected
 ```
 
+## Sample compromised program
+You can clone this compromised repo to test the program: https://github.com/EpiXCoder/Compromised_Repo
+
 ## Dependencies
-go get github.com/go-git/go-git/v5
-go get github.com/google/go-github/v41/github
-go get golang.org/x/oauth2
+    ```
+    go get github.com/go-git/go-git/v5
+    go get github.com/google/go-github/v41/github
+    go get golang.org/x/oauth2
+    ```
 
 ## Notes
 The static analyzer is currently set up to clone and analyze your recently updated 10 repos
