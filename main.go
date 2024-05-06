@@ -21,6 +21,12 @@ type finding struct {
 	Message string
 }
 
+const (
+    green  = "\033[32m"
+    red    = "\033[31m"
+    reset  = "\033[0m"
+)
+
 func main() {
 	org := flag.String("org", "", "GitHub organization or username")
 	token := flag.String("token", "", "GitHub personal access token")
@@ -54,10 +60,16 @@ func main() {
 		close(findings)
 	}()
 
+	foundIssues := false
 	for f := range findings {
+		foundIssues = true
 		fmt.Printf("Found issue in %s at line %d: %s\n", f.File, f.Line, f.Message)
 		logFindingToFile(f)
 	}
+
+	if !foundIssues {
+        fmt.Println(green, "No vulnerabilities identified", reset)
+    }
 }
 
 func analyzeRepo(repo string, findings chan finding) {

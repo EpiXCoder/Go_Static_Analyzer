@@ -17,7 +17,7 @@ import (
 // List of repositories to ignore (add names in lowercase)
 var ignoredRepos = map[string]bool{
 	"go_static_analyzer": true,
-	// "repo-to-ignore-2": true,
+	// "compromised_repo": true,
 }
 
 func cloneRepositories(user string, token string, all bool) []string {

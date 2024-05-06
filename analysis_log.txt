@@ -18,3 +18,13 @@
 2024/05/06 00:50:43 Date: 2024-05-06 00:50:43, File: EpiXCoder_repos_2024-05-06_00-50-42/Compromised_Repo/main.go, Line: 11, Message: Potential hardcoded credentials
 2024/05/06 00:50:43 Date: 2024-05-06 00:50:43, File: EpiXCoder_repos_2024-05-06_00-50-42/Compromised_Repo/main.go, Line: 15, Message: Insecure HTTP URL detected
 2024/05/06 00:50:43 Date: 2024-05-06 00:50:43, File: EpiXCoder_repos_2024-05-06_00-50-42/Compromised_Repo/main.go, Line: 27, Message: Potential command injection detected
+2024/05/06 08:55:16 Date: 2024-05-06 08:55:16, File: EpiXCoder_repos_2024-05-06_08-55-15/Compromised_Repo/config.go, Line: 9, Message: Potential hardcoded credentials
+2024/05/06 08:55:16 Date: 2024-05-06 08:55:16, File: EpiXCoder_repos_2024-05-06_08-55-15/Compromised_Repo/config.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/06 08:55:16 Date: 2024-05-06 08:55:16, File: EpiXCoder_repos_2024-05-06_08-55-15/Compromised_Repo/main.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/06 08:55:16 Date: 2024-05-06 08:55:16, File: EpiXCoder_repos_2024-05-06_08-55-15/Compromised_Repo/main.go, Line: 15, Message: Insecure HTTP URL detected
+2024/05/06 08:55:16 Date: 2024-05-06 08:55:16, File: EpiXCoder_repos_2024-05-06_08-55-15/Compromised_Repo/main.go, Line: 27, Message: Potential command injection detected
+2024/05/06 08:58:00 Date: 2024-05-06 08:58:00, File: EpiXCoder_repos_2024-05-06_08-57-58/Compromised_Repo/config.go, Line: 9, Message: Potential hardcoded credentials
+2024/05/06 08:58:00 Date: 2024-05-06 08:58:00, File: EpiXCoder_repos_2024-05-06_08-57-58/Compromised_Repo/config.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/06 08:58:00 Date: 2024-05-06 08:58:00, File: EpiXCoder_repos_2024-05-06_08-57-58/Compromised_Repo/main.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/06 08:58:00 Date: 2024-05-06 08:58:00, File: EpiXCoder_repos_2024-05-06_08-57-58/Compromised_Repo/main.go, Line: 15, Message: Insecure HTTP URL detected
+2024/05/06 08:58:00 Date: 2024-05-06 08:58:00, File: EpiXCoder_repos_2024-05-06_08-57-58/Compromised_Repo/main.go, Line: 27, Message: Potential command injection detected
