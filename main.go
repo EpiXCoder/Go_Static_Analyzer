@@ -11,6 +11,8 @@ import (
 	"regexp"
 	"strings"
 	"sync"
+	"log"
+    "time"
 )
 
 type finding struct {
@@ -54,6 +56,7 @@ func main() {
 
 	for f := range findings {
 		fmt.Printf("Found issue in %s at line %d: %s\n", f.File, f.Line, f.Message)
+		logFindingToFile(f) 
 	}
 }
 
@@ -128,10 +131,34 @@ func checkInsecureHTTP(n *ast.CallExpr, path string, fset *token.FileSet, findin
 }
 
 func checkCommandInjection(n *ast.CallExpr, path string, fset *token.FileSet, findings chan finding) {
-	if funcIdent, ok := n.Fun.(*ast.SelectorExpr); ok && funcIdent.Sel.Name == "Command" {
-		pos := fset.Position(n.Pos())
-		findings <- finding{File: path, Line: pos.Line, Message: "Potential command injection detected"}
-	}
+    if n == nil || n.Fun == nil {
+        return
+    }
+    
+    if funcIdent, ok := n.Fun.(*ast.SelectorExpr); ok && funcIdent.Sel.Name == "Command" {
+        pos := fset.Position(n.Pos())
+        findings <- finding{File: path, Line: pos.Line, Message: "Potential command injection detected"}
+    }
+}
+
+func logFindingToFile(finding finding) {
+
+    fileName := "analysis_log.txt"
+    logFile, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+    if err != nil {
+        log.Println("Could not open log file:", err)
+        return
+    }
+    defer logFile.Close()
+
+    logger := log.New(logFile, "", log.LstdFlags)
+    logMsg := fmt.Sprintf("Date: %s, File: %s, Line: %d, Message: %s",
+        time.Now().Format("2006-01-02 15:04:05"),
+        finding.File,
+        finding.Line,
+        finding.Message)
+
+    logger.Println(logMsg)
 }
 
 func isGoFile(name string) bool {

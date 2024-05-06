@@ -1,4 +1,6 @@
 # Static Analyzer
+[![Go Report Card](https://goreportcard.com/badge/github.com/EpiXCoder/Go_Static_Analyzer)](https://goreportcard.com/report/github.com/EpiXCoder/Go_Static_Analyzer)
+
 
 **Static Analyzer** is a command-line tool that scans Go code repositories for common security vulnerabilities. It helps developers identify insecure coding patterns before they reach production, ensuring better security for Go applications.
 
@@ -40,7 +42,7 @@
     ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx
     ```
 
-4. **View the Report**: The analyzer will output the findings to the console, listing insecure patterns found in the repositories.
+4. **View the Report**: The analyzer will output the findings to the console and log them to a file, listing insecure patterns found in the repositories.
 
 ## Example Output
 ```

@@ -1,0 +1,15 @@
+2024/05/05 23:57:38 Date: 2024-05-05 23:57:38, File: EpiXCoder_repos_2024-05-05_23-57-37/Compromised_Repo/config.go, Line: 9, Message: Potential hardcoded credentials
+2024/05/05 23:57:38 Date: 2024-05-05 23:57:38, File: EpiXCoder_repos_2024-05-05_23-57-37/Compromised_Repo/config.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/05 23:57:38 Date: 2024-05-05 23:57:38, File: EpiXCoder_repos_2024-05-05_23-57-37/Compromised_Repo/main.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/05 23:57:38 Date: 2024-05-05 23:57:38, File: EpiXCoder_repos_2024-05-05_23-57-37/Compromised_Repo/main.go, Line: 15, Message: Insecure HTTP URL detected
+2024/05/05 23:57:38 Date: 2024-05-05 23:57:38, File: EpiXCoder_repos_2024-05-05_23-57-37/Compromised_Repo/main.go, Line: 27, Message: Potential command injection detected
+2024/05/05 23:58:53 Date: 2024-05-05 23:58:53, File: EpiXCoder_repos_2024-05-05_23-58-51/Compromised_Repo/config.go, Line: 9, Message: Potential hardcoded credentials
+2024/05/05 23:58:53 Date: 2024-05-05 23:58:53, File: EpiXCoder_repos_2024-05-05_23-58-51/Compromised_Repo/config.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/05 23:58:53 Date: 2024-05-05 23:58:53, File: EpiXCoder_repos_2024-05-05_23-58-51/Compromised_Repo/main.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/05 23:58:53 Date: 2024-05-05 23:58:53, File: EpiXCoder_repos_2024-05-05_23-58-51/Compromised_Repo/main.go, Line: 15, Message: Insecure HTTP URL detected
+2024/05/05 23:58:53 Date: 2024-05-05 23:58:53, File: EpiXCoder_repos_2024-05-05_23-58-51/Compromised_Repo/main.go, Line: 27, Message: Potential command injection detected
+2024/05/06 00:01:41 Date: 2024-05-06 00:01:41, File: EpiXCoder_repos_2024-05-06_00-01-40/Compromised_Repo/config.go, Line: 9, Message: Potential hardcoded credentials
+2024/05/06 00:01:41 Date: 2024-05-06 00:01:41, File: EpiXCoder_repos_2024-05-06_00-01-40/Compromised_Repo/config.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/06 00:01:41 Date: 2024-05-06 00:01:41, File: EpiXCoder_repos_2024-05-06_00-01-40/Compromised_Repo/main.go, Line: 11, Message: Potential hardcoded credentials
+2024/05/06 00:01:41 Date: 2024-05-06 00:01:41, File: EpiXCoder_repos_2024-05-06_00-01-40/Compromised_Repo/main.go, Line: 15, Message: Insecure HTTP URL detected
+2024/05/06 00:01:41 Date: 2024-05-06 00:01:41, File: EpiXCoder_repos_2024-05-06_00-01-40/Compromised_Repo/main.go, Line: 27, Message: Potential command injection detected
