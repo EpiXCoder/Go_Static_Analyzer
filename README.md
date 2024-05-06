@@ -28,16 +28,17 @@
     ```
     Replace `<github-username>` with the GitHub username to analyze and `<github-token>` with your access token. The `-all` flag is optional and will clone all repositories if included. Otherwise, the analyzer will scan 10 most recently updated repos.
 
-    #### Examples:
-        To scan all repos
-            ```
-            ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx -all
-            ```
-            
-        or to scan 10 most recently updated repos
-            ```
-            ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx
-            ```
+    **Examples**
+
+    To scan all repos:
+    ```
+    ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx -all
+    ```
+
+    To scan 10 most recently updated repos:
+    ```
+    ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx
+    ```
 
 4. **View the Report**: The analyzer will output the findings to the console, listing insecure patterns found in the repositories.
 
@@ -52,11 +53,11 @@ Found issue in repo3/utils.go at line 45: Potential command injection detected
 You can clone this compromised repo to test the program: https://github.com/EpiXCoder/Compromised_Repo
 
 ## Dependencies
-    ```
-    go get github.com/go-git/go-git/v5
-    go get github.com/google/go-github/v41/github
-    go get golang.org/x/oauth2
-    ```
+```
+go get github.com/go-git/go-git/v5
+go get github.com/google/go-github/v41/github
+go get golang.org/x/oauth2
+```
 
 ## Notes
 - The static analyzer is currently set up to clone and analyze all repositories or just the most recent 10.
