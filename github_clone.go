@@ -1,50 +1,102 @@
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"sync"
+	"time"
 
-    "github.com/go-git/go-git/v5"
-    "github.com/google/go-github/v41/github"
-    "golang.org/x/oauth2"
+	"github.com/go-git/go-git/v5"
+	"github.com/google/go-github/v41/github"
+	"golang.org/x/oauth2"
 )
 
-func cloneRepositories(user string, token string) []string {
-    ctx := context.Background()
-    ts := oauth2.StaticTokenSource(
-        &oauth2.Token{AccessToken: token},
-    )
-    tc := oauth2.NewClient(ctx, ts)
-    client := github.NewClient(tc)
+// List of repositories to ignore (add names in lowercase)
+var ignoredRepos = map[string]bool{
+	"go_static_analyzer": true,
+	// "repo-to-ignore-2": true,
+}
 
-    clonedRepos := make([]string, 0)
-    opt := &github.RepositoryListOptions{
-        Sort:        "pushed",
-        Direction:   "desc", // Descending order (latest pushed first)
-        ListOptions: github.ListOptions{PerPage: 10}, // Retrieve only the latest 10 repositories
-    }
+func cloneRepositories(user string, token string, all bool) []string {
+	ctx := context.Background()
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: token},
+	)
+	tc := oauth2.NewClient(ctx, ts)
+	client := github.NewClient(tc)
 
-    repos, _, err := client.Repositories.List(ctx, user, opt)
-    if err != nil {
-        fmt.Println("Error fetching repositories:", err)
-        return nil
-    }
+	// Create a timestamped directory
+	dirName := fmt.Sprintf("%s_repos_%s", user, time.Now().Format("2006-01-02_15-04-05"))
+	if err := os.MkdirAll(dirName, os.ModePerm); err != nil {
+		fmt.Println("Error creating directory:", err)
+		return nil
+	}
 
-    for _, repo := range repos {
-        repoName := repo.GetName()
-        fmt.Println("Cloning repository:", repoName)
+	clonedRepos := make([]string, 0)
+	var wg sync.WaitGroup
+	mu := &sync.Mutex{}
 
-        _, err := git.PlainClone(repoName, false, &git.CloneOptions{
-            URL: repo.GetCloneURL(),
-        })
+	opt := &github.RepositoryListOptions{
+		Sort:      "pushed",
+		Direction: "desc",
+	}
 
-        if err != nil {
-            fmt.Println("Error cloning repository:", err)
-            continue
-        }
+	if all {
+		opt.PerPage = 100 // Retrieve up to 100 repositories per page
+	} else {
+		opt.PerPage = 10 // Retrieve only 10 repositories
+	}
 
-        clonedRepos = append(clonedRepos, repoName)
-    }
+	page := 1
+	for {
+		opt.Page = page
+		repos, _, err := client.Repositories.List(ctx, user, opt)
+		if err != nil {
+			fmt.Println("Error fetching repositories:", err)
+			break
+		}
 
-    return clonedRepos
+		if len(repos) == 0 {
+			break
+		}
+
+		for _, repo := range repos {
+			repoName := repo.GetName()
+			if ignoredRepos[strings.ToLower(repoName)] {
+				fmt.Println("Ignoring repository:", repoName)
+				continue
+			}
+
+			wg.Add(1)
+			go func(repo *github.Repository) {
+				defer wg.Done()
+				repoPath := filepath.Join(dirName, repo.GetName())
+				fmt.Println("Cloning repository:", repo.GetName())
+
+				_, err := git.PlainClone(repoPath, false, &git.CloneOptions{
+					URL: repo.GetCloneURL(),
+				})
+
+				if err != nil {
+					fmt.Println("Error cloning repository:", err)
+					return
+				}
+
+				mu.Lock()
+				clonedRepos = append(clonedRepos, repoPath)
+				mu.Unlock()
+			}(repo)
+		}
+
+		page++
+		if !all {
+			break
+		}
+	}
+
+	wg.Wait()
+	return clonedRepos
 }

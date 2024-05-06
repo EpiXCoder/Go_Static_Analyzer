@@ -1,10 +1,9 @@
-
 # Static Analyzer
 
 **Static Analyzer** is a command-line tool that scans Go code repositories for common security vulnerabilities. It helps developers identify insecure coding patterns before they reach production, ensuring better security for Go applications.
 
 ## Features
-- **Repository Cloning:** Automatically fetches and clones the latest 10 repositories from a specified GitHub user or organization.
+- **Repository Cloning:** Automatically fetches and clones repositories from a specified GitHub user or organization, with the option to clone either the latest 10 repositories or all repositories.
 - **Code Analysis:** Parses Go files to inspect their syntax trees for insecure patterns.
 - **Pattern Detection:** Flags insecure code, including:
   - **Hardcoded Credentials:** Detects suspicious string literals that may contain passwords, secrets, or API keys.
@@ -25,9 +24,20 @@
 
 3. **Run the Analyzer**: Execute the analyzer with the GitHub username and token:
     ```
-    ./static-analyzer <github-username> <github-token>
+    ./static-analyzer -org=<github-username> -token=<github-token> [-all]
     ```
-    Replace <github-username> with the GitHub username to analyze and <github-token> with your access token.
+    Replace `<github-username>` with the GitHub username to analyze and `<github-token>` with your access token. The `-all` flag is optional and will clone all repositories if included. Otherwise, the analyzer will scan 10 most recently updated repos.
+
+    #### Examples:
+        To scan all repos
+            ```
+            ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx -all
+            ```
+            
+        or to scan 10 most recently updated repos
+            ```
+            ./static-analyzer -org=my-github-org -token=ghp_xxxxxxx
+            ```
 
 4. **View the Report**: The analyzer will output the findings to the console, listing insecure patterns found in the repositories.
 
@@ -38,7 +48,7 @@ Found issue in repo2/server.go at line 24: Insecure HTTP URL detected
 Found issue in repo3/utils.go at line 45: Potential command injection detected
 ```
 
-## Sample compromised program
+## Sample Compromised Program
 You can clone this compromised repo to test the program: https://github.com/EpiXCoder/Compromised_Repo
 
 ## Dependencies
@@ -49,4 +59,5 @@ You can clone this compromised repo to test the program: https://github.com/EpiX
     ```
 
 ## Notes
-The static analyzer is currently set up to clone and analyze your recently updated 10 repos
+- The static analyzer is currently set up to clone and analyze all repositories or just the most recent 10.
+- The cloned repositories are saved in a timestamped folder to keep them organized.
