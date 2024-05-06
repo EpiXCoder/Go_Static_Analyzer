@@ -1,4 +1,5 @@
 # Static Analyzer
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/EpiXCoder/Go_Static_Analyzer)](https://goreportcard.com/report/github.com/EpiXCoder/Go_Static_Analyzer)
 
 
