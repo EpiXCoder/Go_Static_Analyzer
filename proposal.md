@@ -35,3 +35,15 @@ The proposed solution is a static analysis tool that scans Go code repositories 
 
 ## Conclusion
 This static analyzer will empower engineers to improve the security of their Go code by providing automated checks for common vulnerabilities. By proactively identifying issues, our tool will help minimize security risks, contributing to safer and more reliable applications.
+
+# Project Tracker
+- [x] Builds, installs and executes successfully
+- [x] B or higher on Go Report Card
+- [x] Incorporates an external API or package
+- [x] Persists data in a file or a database
+- [x] README contains description
+- [x] README contains screenshot OR install instructions
+- [x] README contains example of how to use the program
+- [x] 2 or more table-driven tests
+- [x] 1 or more benchmark tests
+- [x] All tests pass
