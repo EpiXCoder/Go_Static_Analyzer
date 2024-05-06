@@ -20,7 +20,6 @@ type finding struct {
 }
 
 func main() {
-	// Add a flag to control the number of repositories to clone
 	org := flag.String("org", "", "GitHub organization or username")
 	token := flag.String("token", "", "GitHub personal access token")
 	all := flag.Bool("all", false, "Clone all repositories instead of just the latest 10")

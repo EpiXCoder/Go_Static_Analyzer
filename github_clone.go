@@ -28,7 +28,7 @@ func cloneRepositories(user string, token string, all bool) []string {
 	tc := oauth2.NewClient(ctx, ts)
 	client := github.NewClient(tc)
 
-	// Create a timestamped directory
+	// timestamped directory
 	dirName := fmt.Sprintf("%s_repos_%s", user, time.Now().Format("2006-01-02_15-04-05"))
 	if err := os.MkdirAll(dirName, os.ModePerm); err != nil {
 		fmt.Println("Error creating directory:", err)
